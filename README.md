@@ -1,57 +1,32 @@
-# ⚡ Local AI Launcher (HYPERCORE Local AI Studio)
+# Local AI Launcher
 
-Awwwards-winning, high-performance desktop orchestrator for running local AI models (GGUF via `llama-server`) with multi-model concurrency, real-time hardware telemetry, in-app model downloads, and 1-click IDE synchronization for **MiniMax Code** and **OpenCode**.
+Desktop controller for running local GGUF models via llama-server with multi-instance support and automatic IDE configuration for MiniMax Code and OpenCode.
 
-![Dark Obsidian UI](app_icon.ico)
+<p align="center">
+  <img src="app_icon.ico" alt="Local AI Launcher" width="128" />
+</p>
 
----
+## Overview
 
-## 🌟 Key Features
+Local AI Launcher manages local LLM runtimes on Windows. It allows running models individually or concurrently across separate ports, monitors GPU VRAM and RAM in real time, and auto-generates configurations for developer IDEs.
 
-- **🏆 Awwwards-Class Dark Obsidian UI:**
-  - Modern Bento Grid architecture with deep obsidian background and frosted accent borders.
-  - Live hardware telemetry meters: real-time NVIDIA VRAM & System RAM gauges.
-  - Glowing status pills (`● ONLINE`, `⏳ NAČÍTÁM`, `○ ZASTAVENO`, `○ NENÍ STAŽENO`).
+## Features
 
-- **⚡ Dual Concurrency & Exclusive Modes:**
-  - **Single Instance Mode:** Dedicated 100% GPU offload for peak generation speeds.
-  - **Dual Concurrent Mode:** Run multiple models simultaneously (e.g. Qwen Coder on Port 8082, Bonsai 2 on Port 8080/8081).
-  - Target selector per model: `⚡ GPU (CUDA)` or `🖥️ CPU / RAM`.
+- Multi-model concurrency: Run instances on dedicated ports (8080, 8081, 8082).
+- Hardware targeting: Toggle between CUDA GPU offload and CPU/RAM execution per model.
+- Live telemetry: Real-time NVIDIA VRAM and system memory utilization meters.
+- Direct downloads: Fetch missing GGUF weights directly from Hugging Face.
+- IDE sync: Updates configuration files for MiniMax Code and OpenCode on launch.
+- Web UI and API: Direct access to built-in web chat and OpenAI-compatible /v1 endpoints.
 
-- **📥 In-App Model Downloader:**
-  - Automatically checks if model files exist on disk.
-  - Direct 1-click downloads from Hugging Face with live progress indicator (MB / %).
+## Supported Presets
 
-- **🔌 Seamless IDE Synchronization:**
-  - Automatically generates and synchronizes configuration files for:
-    - **MiniMax Code** (`~/.minimax/config.yaml`)
-    - **OpenCode** (`~/.config/opencode/opencode.jsonc`)
-  - Enables instant tool calling, image attachments, and reasoning modes in IDEs.
+- Qwen 2.5 Coder 7B (Port 8082)
+- Bonsai 2 27B Abliterated v2 (Port 8080)
+- Bonsai 2 27B Base (Port 8081)
 
-- **🌐 Instant Web UI & OpenAI-Compatible API:**
-  - Direct access to local browser chat interface per model.
-  - Standard OpenAI-compatible `/v1/chat/completions` API endpoints with 1-click copy.
+## Setup
 
----
-
-## 🤖 Supported Models
-
-| Model | Port | Architecture | Best For |
-| :--- | :---: | :--- | :--- |
-| **Qwen 2.5 Coder 7B (Instruct)** | `:8082` | Q4_K_M (~4.7 GB) | Code generation, structured JSON, tool-calling, logic decisions |
-| **Bonsai 2 27B (Abliterated v2)** | `:8080` | Ternary PQ2_0 (~7.2 GB) | Unrestricted deep reasoning, multimodal vision support |
-| **Bonsai 2 27B (Base Official)** | `:8081` | Ternary PQ2_0 (~7.2 GB) | High stability reference model, general knowledge |
-
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Windows 10/11 (64-bit)
-- Python 3.10+ (for running from source)
-- NVIDIA GPU with CUDA support (e.g. RTX 3060 Ti or higher recommended)
-
-### Running from Source
 ```bash
 git clone https://github.com/MonsterMarian/LocalAILauncher.git
 cd LocalAILauncher
@@ -59,15 +34,8 @@ pip install -r requirements.txt
 python app.py
 ```
 
-### Building Standalone Executable
+### Build Executable
+
 ```bash
-pip install pyinstaller
 pyinstaller --noconfirm --onefile --windowed --icon "app_icon.ico" --collect-all customtkinter app.py
 ```
-The output `.exe` will be generated in `dist/app.exe`.
-
----
-
-## 🔒 Privacy & Local Security
-- 100% local inference: no telemetry, prompts, or code leaves your workstation.
-- Fully compatible with offline environments.
