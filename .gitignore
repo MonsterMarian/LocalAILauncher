@@ -1,0 +1,25 @@
+# Python & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+.venv/
+env/
+
+# PyInstaller Build Artifacts
+build/
+dist/
+*.spec
+
+# Model Weights & Data (GGUF binaries are multi-gigabyte files)
+models/
+*.gguf
+*.bin
+*.tmp
+
+# Operating System & IDE
+.vscode/
+.idea/
+*.log
+Thumbs.db
+Desktop.ini
